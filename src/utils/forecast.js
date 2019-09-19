@@ -10,8 +10,9 @@ const forecast = (longitude, altitude, callback) => {
             callback('Unable to find location', undefined)
         } else {
             const degrees = body.currently.temperature
-            const chanceOfRain = body.currently.precipProbability
-            callback(undefined, body.daily.data[0].summary + ' It is currently ' + degrees + ' degrees out. There is a ' + chanceOfRain + '% chance of rain.')
+            const chanceOfRain = body.currently.precipProbability * 100
+            const humidity = body.currently.humidity * 100
+            callback(undefined, body.daily.data[0].summary + ' It is currently ' + degrees + ' degrees out. There is a ' + chanceOfRain + '% chance of rain and the humidity is ' + humidity + '%.')
         }
     })
 }
